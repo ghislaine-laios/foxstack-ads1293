@@ -139,12 +139,13 @@ impl<SPI: SpiDevice> Initializer<Application3Lead> for ADS1293<SPI> {
             AddressData(0x0A, 0x07),
             AddressData(0x0C, 0x04),
             AddressData(0x12, 0x04),
+            AddressData(0x12, 0x04),
             AddressData(0x14, 0x24),
             AddressData(0x21, 0x02),
             AddressData(0x22, 0x02),
             AddressData(0x23, 0x02),
             AddressData(0x27, 0x08),
-            AddressData(0x2F, 0x31),
+            AddressData(0x2F, 0x30),
             AddressData(0x00, 0x01),
         ];
 
