@@ -10,7 +10,7 @@ use crate::driver::registers::CONFIG;
 
 use self::operator::Operator;
 use self::registers::addressable::Address;
-use self::registers::data::{DataStatus, LoopReadBackConfig};
+use self::registers::data::{DataStatus, ErrorStatus, LoopReadBackConfig};
 use self::registers::DataRegister;
 
 pub mod initialization;
@@ -191,6 +191,18 @@ impl<SPI: SpiDevice> ReadFromRegister<registers::CH_CNFG, LoopReadBackConfig, SP
     ) -> Result<LoopReadBackConfig, ReadError<SPI::Error>> {
         let data = self.operator.read(register.get_address())?;
         Ok(LoopReadBackConfig(data))
+    }
+}
+
+impl<SPI: SpiDevice> ReadFromRegister<registers::ERROR_STATUS, ErrorStatus, SPI::Error>
+    for ADS1293<SPI>
+{
+    fn read(
+        &mut self,
+        register: registers::ERROR_STATUS,
+    ) -> Result<ErrorStatus, ReadError<SPI::Error>> {
+        let data = self.operator.read(register.get_address())?;
+        Ok(ErrorStatus(data))
     }
 }
 

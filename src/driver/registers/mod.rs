@@ -16,6 +16,7 @@ use self::{
 pub enum Register {
     CONFIG,
     CH_CNFG,
+    ERROR_STATUS,
     DATA_STATUS,
     DATA_LOOP,
 }
@@ -42,6 +43,7 @@ macro_rules! implement_addressable {
 }
 
 implement_addressable!(CONFIG, 0x01);
+implement_addressable!(ERROR_STATUS, 0x19);
 implement_addressable!(CH_CNFG, 0x2F);
 implement_addressable!(DATA_STATUS, 0x30);
 implement_addressable!(DATA_LOOP, 0x50);

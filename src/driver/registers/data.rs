@@ -23,6 +23,20 @@ bitfield! {
 }
 
 bitfield! {
+    pub struct ErrorStatus(u8);
+    impl Debug;
+    bool;
+    sync_error, set_sync_error: 7;
+    ch3_error, set_ch3_error: 6;
+    ch2_error, set_ch2_error: 5;
+    ch1_error, set_ch1_error: 4;
+    lead_off, set_lead_off: 3;
+    low_battery, set_low_battery: 2;
+    rld_near_rail, set_rld_near_rail: 1;
+    common_mode_level_out_of_range, set_common_mode_level_out_of_range: 0;
+}
+
+bitfield! {
     #[derive(Clone, Copy)]
     pub struct DataStatus(u8);
     impl Debug;
