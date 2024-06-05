@@ -15,7 +15,7 @@ use super::{
 
 /// `StreamReader` is used to continuously read data from the ADS1293 by using streaming mode.
 pub struct StreamReader<'a, Spi: SpiDevice> {
-    driver: &'a mut ADS1293<Spi>,
+    pub driver: &'a mut ADS1293<Spi>,
     _config: LoopReadBackConfig,
     enabled_fields: Vec<&'static FieldConfig>,
     buffer: Vec<u8>,
