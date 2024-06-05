@@ -5,17 +5,19 @@ use ux::u24;
 use crate::driver::initialization::{Application3Lead, InitializeError, Initializer};
 use crate::driver::registers::access::{ReadError, ReadFromRegister, WriteToRegister};
 use crate::driver::registers::addressable::Addressable;
-use crate::driver::registers::data::{self, MainConfig};
+use crate::driver::registers::data::MainConfig;
 use crate::driver::registers::CONFIG;
 
 use self::operator::Operator;
 use self::registers::addressable::Address;
 use self::registers::data::{DataStatus, ErrorStatus, LoopReadBackConfig};
 use self::registers::DataRegister;
+use self::stream_reader::StreamReader;
 
 pub mod initialization;
 pub mod operator;
 pub mod registers;
+pub mod stream_reader;
 
 pub struct ADS1293<SPI: SpiDevice> {
     pub operator: Operator<SPI>,
@@ -40,6 +42,7 @@ impl<SPI: SpiDevice> ADS1293<SPI> {
         }
     }
 
+    #[deprecated(note = "Use `stream_reader` instead")]
     pub fn stream_one(&mut self) -> Result<Vec<registers::DataRegister>, StreamError<SPI::Error>> {
         let config = self
             .read(registers::CH_CNFG)
@@ -115,6 +118,10 @@ impl<SPI: SpiDevice> ADS1293<SPI> {
         debug_assert!(config_raw == 0);
 
         Ok(result)
+    }
+
+    pub fn stream_reader(&mut self) -> Result<StreamReader<SPI>, StreamError<SPI::Error>> {
+        StreamReader::new(self)
     }
 }
 
