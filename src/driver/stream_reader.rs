@@ -74,7 +74,13 @@ impl<'a, Spi: SpiDevice> StreamReader<'a, Spi> {
             })
             .collect::<Vec<_>>();
 
-        let buffer: Vec<u8> = vec![0xff; enabled_fields.len() + 1];
+        let buffer_len = enabled_fields
+            .iter()
+            .map(|field| field.width)
+            .sum::<usize>()
+            + 1;
+
+        let buffer: Vec<u8> = vec![0xff; buffer_len];
 
         Ok(Self {
             driver,
