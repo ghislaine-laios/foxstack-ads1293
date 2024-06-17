@@ -152,7 +152,8 @@ impl<SPI: SpiDevice> Initializer<Application3Lead> for ADS1293<SPI> {
             AddressData(0x22, 0x02),
             AddressData(0x23, 0x02),
             AddressData(0x27, 0x08),
-            AddressData(0x2F, 0x30),
+            // Additionally enable data status retrieving.
+            AddressData(0x2F, 0x31),
             AddressData(0x00, 0x01),
         ];
 
