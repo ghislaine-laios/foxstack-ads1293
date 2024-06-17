@@ -41,11 +41,11 @@ bitfield! {
     pub struct DataStatus(u8);
     impl Debug;
     bool;
-    e3_data_ready, set_e3_data_ready: 7;
-    e2_data_ready, set_e2_data_ready: 6;
-    e1_data_ready, set_e1_data_ready: 5;
-    p3_data_ready, set_p3_data_ready: 4;
-    p2_data_ready, set_p2_data_ready: 3;
-    p1_data_ready, set_p1_data_ready: 2;
-    is_alarm_active, set_alarm_active: 1;
+    pub e3_data_ready, set_e3_data_ready: 7;
+    pub e2_data_ready, set_e2_data_ready: 6;
+    pub e1_data_ready, set_e1_data_ready: 5;
+    pub p3_data_ready, set_p3_data_ready: 4;
+    pub p2_data_ready, set_p2_data_ready: 3;
+    pub p1_data_ready, set_p1_data_ready: 2;
+    pub is_alarm_active, set_alarm_active: 1;
 }
